@@ -10,12 +10,15 @@ class RenderController extends Controller
     public function getQueue(Request $request) {
         $queue = RenderQueue::all();
 
-        $string = '';
-        foreach ($queue as $queueitem) {
-            $string = $string . $queueitem->type . ':' . $queueitem->target_id . ':' . $queueitem->id . ';';
+        foreach ($queue as $queueitem) {            
+            $queue_array[] = [
+                'Type'         => $queueitem->type,
+                'Target_ID'    => $queueitem->target_id,
+                'Queue_ID'     => $queueitem->id,
+            ];
         }
         
-        return substr_replace($string, "", -1);
+        return response()->json($queue_array);
     }
 
     public function upload(Request $request) {
