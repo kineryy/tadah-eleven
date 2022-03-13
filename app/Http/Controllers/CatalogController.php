@@ -167,7 +167,7 @@ class CatalogController extends Controller
             abort(404);
         }
 
-        if (!$user == $item->user && !$user->admin) {
+        if (!$user == $item->user || !$user->admin) {
             abort(403);
         }
 
@@ -183,7 +183,7 @@ class CatalogController extends Controller
             abort(404);
         }
 
-        if (!$user == $item->user && !$user->admin) {
+        if (!$user == $item->user || !$user->admin) {
             abort(403);
         }
 
